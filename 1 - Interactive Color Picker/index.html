@@ -24,20 +24,23 @@
 
         
         const preview = (event) => {
-            setColor(event.target.value)
+            setColor(event.target.value)   
+            console.log(color) 
         }
 
 
         return (
             <div style={{ marginLeft: "50px" }} >
+            <label>Enter code here: </label>
                 <input
-                    placeholder="Enter Color Code"
                     onChange={preview}
                 />
+                <p>Preview :</p>
                 <div style={{
-                    backgroundColor:color, border: "1px dotted black", height: "80px", borderRadius: "20px", marginTop: "20px",
+                    backgroundColor:color , border: "1px dotted black", height: "80px", borderRadius: "20px", marginTop: "20px",
                     width: "230px",
                 }}>
+                
                 </div>
             </div>
         )
