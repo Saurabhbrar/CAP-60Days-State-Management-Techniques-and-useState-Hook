@@ -1,17 +1,78 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Template</title>
-  </head>
-  <body>
-    <div id="root"></div>
-  </body>
-  <script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
-  <script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
-  <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
-  <script type="text/babel">
-    // Your  code will go here
-  </script>
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  // Your  code will go here
+  let root = document.getElementById('root')
+  let reactRoot = ReactDOM.createRoot(root);
+
+  function App() {
+
+    let array = [
+      {
+        questions: "Who is the father of Computers",
+        option1: "James Gosling",
+        option2: "Charles Babbage",
+        option3: "Dennis Ritchie",
+        correctAns: "Charles Babbage"
+      },
+      {
+        questions: " What is the full form of CPU?",
+        option1: "Computer Processing Unit",
+        option2: "Computer Principle Unit",
+        option3: "Central Processing Unit",
+        correctAns: "Central Processing Unit"
+      },
+      {
+        questions: "Which of the following computer language is written in binary codes only?",
+        option1: "Pascal",
+        option2: "Machine Language",
+        option3: "C Language",
+        correctAns: "Machine Language"
+      }
+    ]
+    return (
+     <div>
+    {array.map((item , index) =>(
+      <div key={index}>
+        <h2>{item.questions}</h2> 
+          <ul>
+            <li>
+              <input type="checkbox" id={`option1-${index}`} name={`question-${index}`} />
+                <label htmlFor={`option1-${index}`}>{`1. ${item.option1}`}</label>
+              </li>
+              <li>
+                <input type="checkbox" id={`option2-${index}`} name={`question-${index}`} />
+                <label htmlFor={`option2-${index}`}>{`2. ${item.option2}`}</label>
+              </li>
+              <li>
+                <input type="checkbox" id={`option3-${index}`} name={`question-${index}`} />
+                <label htmlFor={`option3-${index}`}>{`3. ${item.option3}`}</label>
+              </li>
+                
+          </ul>
+          
+          </div>
+          
+        ))}
+        
+      </div>
+    )
+  }
+
+  reactRoot.render(<App />)
+</script>
+
 </html>
