@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  // Your  code will go here
+  let root = document.getElementById("root")
+
+
+  function App() {
+    const [hobby, setHobby] = React.useState([])
+    const [newHobby, setNewHobby] = React.useState("")
+
+    function change(e) {
+      setNewHobby(e.target.value)
+
+    }
+    function addhobby() {
+      //console.log(newHobby)
+      setHobby(prevValue => [...prevValue, { id : Date.now() ,text: newHobby }])
+      setNewHobby("")
+
+    }
+    //console.log(hobby)
+    function removehby(id){
+      setHobby(prevValue => prevValue.filter(result=>result.id !==id))
+    }
+
+    return (
+      <div>
+        <input type="text" value={newHobby} onChange={change} />
+        <button onClick={addhobby}>Add Hobby</button>
+
+        <ul>
+          {hobby.map((result, index)=> (
+            <li key = {result.id}>
+              <span>{result.text}</span>
+              <button onClick = {()=>removehby(result.id)}>Delete</button>
+            </li>
+          ))}
+        </ul>
+      </div>
+
+
+    )
+
+  }
+  let reactRoot = ReactDOM.createRoot(root)
+  reactRoot.render(<App />)
+
+</script>
+
+</html>
