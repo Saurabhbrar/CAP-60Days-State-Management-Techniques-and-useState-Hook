@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Template</title>
+</head>
+
+<body>
+  <div id="root"></div>
+</body>
+<script src="https://www.unpkg.com/react@18.2.0/umd/react.development.js"></script>
+<script src="https://www.unpkg.com/react-dom@18.2.0/umd/react-dom.development.js"></script>
+<script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+<script type="text/babel">
+  // Your  code will go here
+  let root = document.getElementById("root")
+  let reactRoot = ReactDOM.createRoot(root)
+
+  function ToDoApp() {
+    const [todo, setTodo] = React.useState([])
+    const [newtodo, newsetTodo] = React.useState("")
+
+    function change(e) {
+      newsetTodo(e.target.value)
+    }
+    function addbtn(){
+      
+      setTodo(prevValue => [...prevValue, { id: Date.now(), text: newtodo , compeleted: false }])
+      newsetTodo("")
+    }
+    //console.log(todo)
+
+    function toggletodo(id){
+      setTodo(prevtodo => prevtodo.map(todo => todo.id === id ? {...todo,compeleted: !todo.compeleted} : todo))
+    }
+
+    function removebtn(id){
+      setTodo(prevtodo => prevtodo.filter(todo => todo.id !==id))
+    }
+    return (
+      <div>
+        <input type="text" onChange ={change} value = {newtodo}  />
+        <button onClick = {addbtn}>Add Todo</button>
+
+        <ol>
+          {todo.map((todo,index) =>(
+            <li key= {todo.id}>
+              <input type="checkbox" checked = {todo.compeleted} onChange = {() => toggletodo(todo.id)}/>  
+              <span>{todo.text}</span>
+              <button onClick = {() => removebtn(todo.id)}>Delete</button>
+            </li>
+
+          ))}
+        </ol>
+      </div>
+    )
+  }
+
+
+  reactRoot.render(<ToDoApp />)
+</script>
+
+</html>
